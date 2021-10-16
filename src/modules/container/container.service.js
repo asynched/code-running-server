@@ -5,6 +5,10 @@ import { v4 as uuid } from 'uuid'
 export default class ContainerService {
   static #ROOT_PATH = path.join(process.cwd(), 'containers')
 
+  /**
+   * Creates a new container
+   * @returns The container's info
+   */
   async createContainer() {
     const folderName = uuid()
     const folderPath = path.join(ContainerService.#ROOT_PATH, folderName)
@@ -18,6 +22,23 @@ export default class ContainerService {
     }
   }
 
+  /**
+   * Creates a file within a given container
+   * @param {string} containerID Container's ID
+   * @param {string} fileName New file name
+   */
+  async createFile(containerID, fileName) {
+    const folderPath = path.join(ContainerService.#ROOT_PATH, containerID)
+    const filePath = path.join(folderPath, fileName)
+
+    await fs.writeFile(filePath, '')
+  }
+
+  /**
+   * Gets the info from the container
+   * @param {string} containerID Container's ID
+   * @returns Container's info
+   */
   async getContainerInfo(containerID) {
     const folderPath = path.join(ContainerService.#ROOT_PATH, containerID)
     const files = await fs.readdir(folderPath)
@@ -25,6 +46,7 @@ export default class ContainerService {
     return {
       files,
       folderPath,
+      folderName: containerID,
     }
   }
 }

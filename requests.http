@@ -1,0 +1,15 @@
+### Create a new container
+GET http://localhost:3333/container HTTP/1.1
+Content-Type: application/json
+
+### Get a container's info
+GET http://localhost:3333/container/59c1cefc-dc4a-46bb-9ee2-ac59705769a9 HTTP/1.1
+Content-Type: application/json
+
+### Create a new file inside a container
+POST http://localhost:3333/container/59c1cefc-dc4a-46bb-9ee2-ac59705769a9/new HTTP/1.1
+Content-Type: application/json
+
+{
+  "fileName": "test.js"
+}

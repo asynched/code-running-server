@@ -1,0 +1,19 @@
+{
+  "name": "code-running-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "build": "sucrase src -d build -t imports",
+    "start": "yarn build && node build/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13",
+    "sucrase": "^3.20.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  }
+}

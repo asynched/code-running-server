@@ -2,22 +2,22 @@
 GET http://localhost:3333/container HTTP/1.1
 Content-Type: application/json
 
-### Get a container's info
-GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26 HTTP/1.1
+### Get a container's folder info
+GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/files HTTP/1.1
 Content-Type: application/json
 
 ### Create a new file inside a container
-POST http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/file HTTP/1.1
+POST http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/files HTTP/1.1
 Content-Type: application/json
 
 {
-  "fileName": "test.js"
+  "fileName": "test1.js"
 }
 
 ### Get a file inside a container
-GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/file/index.js HTTP/1.1
+GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/files/index.js HTTP/1.1
 Content-Type: application/json
 
 ### Execute a file inside a container
-GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/file/index.js/run HTTP/1.1
+GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/files/index.js/run HTTP/1.1
 Content-Type: application/json

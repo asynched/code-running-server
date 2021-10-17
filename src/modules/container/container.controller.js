@@ -41,6 +41,18 @@ export default class ContainerController {
    *
    * @param {import('express').Request} request
    * @param {import('express').Response} response
+   */
+  async getFile(request, response) {
+    const { containerID, fileName } = request.params
+    const fileInfo = await this.containerService.getFile(containerID, fileName)
+
+    return response.status(200).json(fileInfo)
+  }
+
+  /**
+   *
+   * @param {import('express').Request} request
+   * @param {import('express').Response} response
    * @returns
    */
   async createFile(request, response) {

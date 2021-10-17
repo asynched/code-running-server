@@ -49,4 +49,22 @@ export default class ContainerService {
       folderName: containerID,
     }
   }
+
+  /**
+   * Gets a file within a container
+   * @param {string} containerID Container's id
+   * @param {string} fileName File name
+   * @returns An object containing the folder path, filename and file content
+   */
+  async getFile(containerID, fileName) {
+    const folderPath = path.join(ContainerService.#ROOT_PATH, containerID)
+    const fileBuffer = await fs.readFile(path.join(folderPath, fileName))
+    const fileContent = await fileBuffer.toString()
+
+    return {
+      folderPath,
+      fileName,
+      fileContent,
+    }
+  }
 }

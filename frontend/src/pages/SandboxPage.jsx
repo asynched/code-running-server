@@ -27,7 +27,7 @@ const SandboxPage = () => {
           />
         </div>
         <div className="p-2 border-l border-gray-700 bg-dracula-background text-dracula-green font-code">
-          $ terminal output
+          $ node index.js
         </div>
       </div>
     </div>

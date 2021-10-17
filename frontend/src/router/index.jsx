@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import SandboxContextProvider from '../context/SandboxContext.jsx'
 
 import IndexPage from '../pages/IndexPage.jsx'
 import SandboxPage from '../pages/SandboxPage.jsx'
@@ -9,7 +10,9 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={IndexPage} />
-        <Route path="/container/:containerID" component={SandboxPage} />
+        <SandboxContextProvider>
+          <Route path="/container/:containerID" component={SandboxPage} />
+        </SandboxContextProvider>
       </Switch>
     </BrowserRouter>
   )

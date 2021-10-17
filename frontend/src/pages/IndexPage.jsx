@@ -11,7 +11,7 @@ const IndexPage = () => {
   }
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center bg-dracula-background">
+    <div className="w-screen h-screen flex flex-col items-center justify-center bg-dracula-background font-code">
       <h1 className="text-8xl font-bold tracking-tighter leading-loose text-dracula-pink">
         Code running server
       </h1>
@@ -20,7 +20,7 @@ const IndexPage = () => {
       </p>
       <button
         onClick={handleCreateContainerClick}
-        className="py-2 px-4 text-white text-xl bg-dracula-pink rounded-lg font-bold transition hover:bg-dracula-purple"
+        className="py-2 px-4 text-dracula-background text-xl bg-dracula-green font-bold transition filter hover:brightness-75"
       >
         Create project
       </button>

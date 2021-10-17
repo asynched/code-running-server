@@ -1,18 +1,18 @@
 /**
- * @template T
- * @template S
+ * @template T Module type
+ * @template S Services type
  * @typedef ModuleFactoryOptionsType
  *
- * @property {T} controller
- * @property {Array<S>} services
+ * @property {T} controller Module's controller
+ * @property {Array<S>} services List of controller services
  */
 
 export default class ModuleFactory {
-  /**
-   * @template T
-   * @template S
-   * @param {ModuleFactoryOptionsType<T, S>} options
-   * @returns {InstanceType<T>}
+  /** Creates a new instance of a given module
+   * @template T Module type
+   * @template S Services type
+   * @param {ModuleFactoryOptionsType<T, S>} options Module options
+   * @returns {InstanceType<T>} Instance of the given module
    */
   static getModule({ controller, services }) {
     const instantiatedServices = services.map((service) => new service())

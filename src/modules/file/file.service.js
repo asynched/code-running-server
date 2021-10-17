@@ -31,8 +31,13 @@ export default class FileService {
    */
   async executeFile(containerID, fileName) {
     const filePath = path.join(FileService.ROOT_PATH, containerID, fileName)
+    const command = `node ${filePath}`
     const commandOutput = await executeProcess(`node ${filePath}`)
-    return commandOutput
+
+    return {
+      command,
+      commandOutput,
+    }
   }
 
   /**
@@ -61,5 +66,11 @@ export default class FileService {
     const filePath = path.join(folderPath, fileName)
 
     await fs.writeFile(filePath, '')
+  }
+
+  async saveFile(containerID, fileName, content) {
+    const filePath = path.join(FileService.ROOT_PATH, containerID, fileName)
+    await fs.writeFile(filePath, content)
+    return await this.getFile(containerID, fileName)
   }
 }

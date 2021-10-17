@@ -64,11 +64,9 @@ export default class FileController {
   async executeFile(request, response) {
     const { containerID, fileName } = request.params
 
-    const output = await this.fileService.executeFile(containerID, fileName)
+    const commandOutput = await this.fileService.executeFile(containerID, fileName)
 
-    return response.status(200).json({
-      output,
-    })
+    return response.status(200).json(commandOutput)
   }
   /**
    *
@@ -80,8 +78,8 @@ export default class FileController {
     const { containerID, fileName } = request.params
     const { content } = request.body
 
-    await this.fileService.saveFile(containerID, fileName, content)
+    const fileInfo = await this.fileService.saveFile(containerID, fileName, content)
 
-    return response.status(204)
+    return response.status(200).json(fileInfo)
   }
 }

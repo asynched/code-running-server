@@ -68,9 +68,26 @@ export default class FileService {
     await fs.writeFile(filePath, '')
   }
 
-  async saveFile(containerID, fileName, content) {
+  /**
+   * Saves a updated version of the file with the given parameters passed to the function
+   * @param {string} containerID Container's ID
+   * @param {string} fileName File name
+   * @param {string} content File contents
+   * @returns Info for the updated file
+   */
+  async updateFile(containerID, fileName, content) {
     const filePath = path.join(FileService.ROOT_PATH, containerID, fileName)
     await fs.writeFile(filePath, content)
     return await this.getFile(containerID, fileName)
+  }
+
+  /**
+   * Deletes a file
+   * @param {string} containerID Container's ID
+   * @param {string} fileName File name
+   */
+  async deleteFile(containerID, fileName) {
+    const filePath = path.join(FileService.ROOT_PATH, containerID, fileName)
+    await fs.rm(filePath)
   }
 }

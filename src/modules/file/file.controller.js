@@ -74,12 +74,21 @@ export default class FileController {
    * @param {import('express').Response} response
    * @returns
    */
-  async saveFile(request, response) {
+  async updateFile(request, response) {
     const { containerID, fileName } = request.params
     const { content } = request.body
 
-    const fileInfo = await this.fileService.saveFile(containerID, fileName, content)
+    const fileInfo = await this.fileService.updateFile(containerID, fileName, content)
 
     return response.status(200).json(fileInfo)
+  }
+
+  async deleteFile(request, response) {
+    const { containerID, fileName } = request.params
+    await this.fileService.deleteFile(containerID, fileName)
+
+    return response.status(204).json({
+      message: `Successfully deleted file "${fileName}"`,
+    })
   }
 }

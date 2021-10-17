@@ -1,6 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import { v4 as uuid } from 'uuid'
+import { executeProcess } from '../../lib/process-executor'
 
 export default class ContainerService {
   static #ROOT_PATH = path.join(process.cwd(), 'containers')
@@ -66,5 +67,17 @@ export default class ContainerService {
       fileName,
       fileContent,
     }
+  }
+
+  /**
+   * Executes a Javascript file and returns it's output
+   * @param {string} containerID Container's id
+   * @param {string} fileName File name
+   * @returns Output of the execution of the file
+   */
+  async executeFile(containerID, fileName) {
+    const filePath = path.join(ContainerService.#ROOT_PATH, containerID, fileName)
+    const commandOutput = await executeProcess(`node ${filePath}`)
+    return commandOutput
   }
 }

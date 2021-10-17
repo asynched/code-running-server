@@ -67,4 +67,20 @@ export default class ContainerController {
       info,
     })
   }
+
+  /**
+   *
+   * @param {import('express').Request} request
+   * @param {import('express').Response} response
+   * @returns
+   */
+  async executeFile(request, response) {
+    const { containerID, fileName } = request.params
+
+    const output = await this.containerService.executeFile(containerID, fileName)
+
+    return response.status(200).json({
+      output,
+    })
+  }
 }

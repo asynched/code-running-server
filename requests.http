@@ -17,3 +17,7 @@ Content-Type: application/json
 ### Get a file inside a container
 GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/file/index.js HTTP/1.1
 Content-Type: application/json
+
+### Execute a file inside a container
+GET http://localhost:3333/container/59d712fd-a550-4a28-8943-ae18d02b1f26/file/index.js/run HTTP/1.1
+Content-Type: application/json

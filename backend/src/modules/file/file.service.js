@@ -47,7 +47,19 @@ export default class FileService {
    */
   async getFolderInfo(containerID) {
     const folderPath = path.join(FileService.ROOT_PATH, containerID)
-    const files = await fs.readdir(folderPath)
+    const fileNames = await fs.readdir(folderPath)
+
+    const filesPromise = fileNames.map(async (fileName) => {
+      const fileBuffer = await fs.readFile(path.join(folderPath, fileName))
+      const content = fileBuffer.toString()
+
+      return {
+        fileName,
+        content,
+      }
+    })
+
+    const files = await Promise.all(filesPromise)
 
     return {
       files,

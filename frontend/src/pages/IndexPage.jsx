@@ -7,8 +7,7 @@ const IndexPage = () => {
 
   const handleCreateContainerClick = async () => {
     const data = await createContainer()
-    const containerID = data.folderName
-    history.push(`/container/${containerID}`)
+    history.push(`/container/${data.containerID}`)
   }
 
   return (

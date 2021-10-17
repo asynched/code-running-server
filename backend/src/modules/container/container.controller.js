@@ -15,6 +15,7 @@ export default class ContainerController {
     const { folderName, folderPath } = await this.containerService.createContainer()
 
     return response.status(201).json({
+      containerID: folderName,
       path: folderPath,
       folderName: folderName,
       files: ['index.js'],

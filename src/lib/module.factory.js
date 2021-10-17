@@ -18,16 +18,21 @@ export default class ModuleFactory {
     const instantiatedServices = services.map((service) => new service())
     const instance = new controller(...instantiatedServices)
 
-    bindMethods(controller, instance)
+    ModuleFactory.#bindControllerMethods(controller, instance)
 
     return instance
   }
-}
 
-function bindMethods(baseClass, controller) {
-  Object.getOwnPropertyNames(baseClass.prototype)
-    .filter((method) => method !== 'constructor')
-    .forEach((method) => {
-      controller[method] = controller[method].bind(controller)
-    })
+  /**
+   * @template T
+   * @param {T} baseClass
+   * @param {InstanceType<T>} controller
+   */
+  static #bindControllerMethods(baseClass, controller) {
+    Object.getOwnPropertyNames(baseClass.prototype)
+      .filter((method) => method !== 'constructor')
+      .forEach((method) => {
+        controller[method] = controller[method].bind(controller)
+      })
+  }
 }

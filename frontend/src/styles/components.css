@@ -1,0 +1,13 @@
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-dracula-background;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-dracula-purple rounded;
+}

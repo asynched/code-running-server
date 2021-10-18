@@ -3,10 +3,10 @@ import { UnControlled as CodeMirror } from 'react-codemirror2'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/keymap/sublime'
 
-import { SandboxContext } from '@contexts/SandboxContext'
+import { sandboxActions, SandboxContext } from '@contexts/SandboxContext'
 
 const SandboxCodeEditor = () => {
-  const { state } = useContext(SandboxContext)
+  const { state, dispatch } = useContext(SandboxContext)
 
   return (
     <CodeMirror
@@ -18,8 +18,11 @@ const SandboxCodeEditor = () => {
         keyMap: 'sublime',
         lineNumbers: true,
         autocorrect: true,
+        lineWrapping: true,
       }}
-      onChange={(editor, data, value) => {}}
+      onChange={(_editor, _data, value) =>
+        dispatch({ type: sandboxActions.SET_EDITED_TEXT, payload: value })
+      }
     />
   )
 }

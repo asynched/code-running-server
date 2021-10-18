@@ -78,9 +78,12 @@ export default class FileController {
     const { containerID, fileName } = request.params
     const { content } = request.body
 
-    const fileInfo = await this.fileService.updateFile(containerID, fileName, content)
+    const info = await this.fileService.updateFile(containerID, fileName, content)
 
-    return response.status(200).json(fileInfo)
+    return response.status(200).json({
+      info,
+      containerID,
+    })
   }
 
   async deleteFile(request, response) {

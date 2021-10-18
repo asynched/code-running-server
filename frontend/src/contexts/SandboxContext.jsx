@@ -1,15 +1,18 @@
-import React, { createContext, useMemo, useReducer } from 'react'
+import React, { createContext, useEffect, useMemo, useReducer } from 'react'
+
+/**
+ * @typedef ContextReducerActionType
+ * @property {string | number} type
+ * @property {any} payload
+ */
 
 /**
  * @callback ContextReducerDispatchType
- *
- * @param {string} type
- * @param {any} payload
+ * @param {ContextReducerActionType} action
  */
 
 /**
  * @typedef ContextReducerStateType
- *
  * @property {typeof sandboxInitialState} state
  * @property {ContextReducerDispatchType} dispatch
  */
@@ -34,6 +37,7 @@ const sandboxInitialState = {
   },
   loaded: false,
   logs: [],
+  editedText: '',
 }
 
 export const sandboxActions = {
@@ -42,21 +46,34 @@ export const sandboxActions = {
   SET_DEFAULT_ACTIVE_FILE: 3,
   SET_LOADED: 4,
   SET_LOGS: 5,
+  SET_EDITED_TEXT: 6,
 }
 
+/**
+ * @param {typeof sandboxInitialState} state
+ * @param {ContextReducerActionType} action
+ * @returns {typeof sandboxInitialState}
+ */
 const sandboxReducer = (state, action) => {
   switch (action.type) {
     case sandboxActions.SET_PAGE_INFO: {
       return { ...state, pageInfo: action.payload, loaded: true }
     }
     case sandboxActions.SET_ACTIVE_FILE: {
-      return { ...state, activeFile: action.payload }
+      return { ...state, activeFile: action.payload, editedText: action.payload.content }
     }
     case sandboxActions.SET_DEFAULT_ACTIVE_FILE: {
-      return { ...state, activeFile: state.pageInfo.info.files[0] }
+      return {
+        ...state,
+        activeFile: state.pageInfo.info.files[0],
+        editedText: state.pageInfo.info.files[0].content,
+      }
     }
     case sandboxActions.SET_LOGS: {
       return { ...state, logs: [...state.logs, action.payload] }
+    }
+    case sandboxActions.SET_EDITED_TEXT: {
+      return { ...state, editedText: action.payload }
     }
     default: {
       throw new Error(

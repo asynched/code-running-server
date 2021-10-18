@@ -9,7 +9,7 @@ const SandboxFileSidebarButton = ({ file, onClick }) => {
       onClick={() => onClick(file.fileName)}
       className={`py-1 px-2 text-left text-sm ${
         file.fileName === state.activeFile.fileName
-          ? 'font-bold bg-black bg-opacity-25 rounded'
+          ? 'font-bold text-dracula-purple bg-black bg-opacity-25 rounded'
           : ''
       }`}
     >

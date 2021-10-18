@@ -90,7 +90,7 @@ export default class FileService {
   async updateFile(containerID, fileName, content) {
     const filePath = path.join(FileService.ROOT_PATH, containerID, fileName)
     await fs.writeFile(filePath, content)
-    return await this.getFile(containerID, fileName)
+    return await this.getFolderInfo(containerID)
   }
 
   /**

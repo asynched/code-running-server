@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { sandboxActions, SandboxContext } from '../context/SandboxContext'
-import { getRunFileLogs } from '../services/http/api/files'
+import { sandboxActions, SandboxContext } from '@contexts/SandboxContext'
+import { getRunFileLogs } from '@services/http/api/files'
 
 const SandboxHeadingInfo = () => {
   const { state, dispatch } = useContext(SandboxContext)

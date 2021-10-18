@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { createContainer } from '../services/http/api/container'
+import { createContainer } from '@services/http/api/container'
 
 const IndexPage = () => {
   const history = useHistory()

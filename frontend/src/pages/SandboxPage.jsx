@@ -1,15 +1,16 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { getFolderInfo } from '../services/http/api/files'
-import { SandboxContext, sandboxActions } from '../context/SandboxContext'
+import { getFolderInfo } from '@services/http/api/files'
+import { SandboxContext, sandboxActions } from '@contexts/SandboxContext'
 
-import SandboxCodeEditor from '../components/SandboxCodeEditor'
-import SandboxFileSidebar from '../components/SandboxFileSidebar'
-import SandboxHeadingInfo from '../components/SandboxHeadingInfo'
-import SandboxLeftPanel from '../components/SandboxLeftPanel'
-import SandboxRightPanel from '../components/SandboxRightPanel'
-import SandboxMainContent from '../components/SandboxMainContent'
+import SandboxCodeEditor from '@components/SandboxCodeEditor'
+import SandboxFileSidebar from '@components/SandboxFileSidebar'
+import SandboxHeadingInfo from '@components/SandboxHeadingInfo'
+import SandboxLeftPanel from '@components/SandboxLeftPanel'
+import SandboxRightPanel from '@components/SandboxRightPanel'
+import SandboxMainContent from '@components/SandboxMainContent'
+import SandboxLogsTerminal from '@components/SandboxLogsTerminal'
 
 const SandboxPage = () => {
   const params = useParams()
@@ -47,12 +48,7 @@ const SandboxPage = () => {
           <SandboxCodeEditor />
         </SandboxLeftPanel>
         <SandboxRightPanel>
-          {state.logs.map((log) => (
-            <React.Fragment>
-              <p className="text-dracula-green">$ {log.command}</p>
-              <pre className="text-dracula-foreground">{log.commandOutput}</pre>
-            </React.Fragment>
-          ))}
+          <SandboxLogsTerminal />
         </SandboxRightPanel>
       </SandboxMainContent>
     </div>

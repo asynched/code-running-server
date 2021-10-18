@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import SandboxContextProvider from '../context/SandboxContext.jsx'
+import SandboxContextProvider from '@contexts/SandboxContext.jsx'
 
-import IndexPage from '../pages/IndexPage.jsx'
-import SandboxPage from '../pages/SandboxPage.jsx'
+import IndexPage from '@pages/IndexPage.jsx'
+import SandboxPage from '@pages/SandboxPage.jsx'
 
 const Routes = () => {
   return (

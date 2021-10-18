@@ -3,7 +3,7 @@ import { UnControlled as CodeMirror } from 'react-codemirror2'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/keymap/sublime'
 
-import { SandboxContext } from '../context/SandboxContext'
+import { SandboxContext } from '@contexts/SandboxContext'
 
 const SandboxCodeEditor = () => {
   const { state } = useContext(SandboxContext)

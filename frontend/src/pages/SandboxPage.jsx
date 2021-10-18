@@ -39,7 +39,7 @@ const SandboxPage = () => {
   }
 
   return (
-    <div className="w-full h-screen bg-dracula-background font-code overflow-hidden">
+    <div className="w-full h-screen max-h-screen bg-dracula-background font-code overflow-hidden">
       <SandboxHeadingInfo />
       <SandboxMainContent>
         <SandboxLeftPanel>
@@ -47,7 +47,12 @@ const SandboxPage = () => {
           <SandboxCodeEditor />
         </SandboxLeftPanel>
         <SandboxRightPanel>
-          <p>$ node index.js </p>
+          {state.logs.map((log) => (
+            <React.Fragment>
+              <p className="text-dracula-green">$ {log.command}</p>
+              <pre className="text-dracula-foreground">{log.commandOutput}</pre>
+            </React.Fragment>
+          ))}
         </SandboxRightPanel>
       </SandboxMainContent>
     </div>

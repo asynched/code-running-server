@@ -33,6 +33,7 @@ const sandboxInitialState = {
     content: null,
   },
   loaded: false,
+  logs: [],
 }
 
 export const sandboxActions = {
@@ -40,6 +41,7 @@ export const sandboxActions = {
   SET_ACTIVE_FILE: 2,
   SET_DEFAULT_ACTIVE_FILE: 3,
   SET_LOADED: 4,
+  SET_LOGS: 5,
 }
 
 const sandboxReducer = (state, action) => {
@@ -52,6 +54,9 @@ const sandboxReducer = (state, action) => {
     }
     case sandboxActions.SET_DEFAULT_ACTIVE_FILE: {
       return { ...state, activeFile: state.pageInfo.info.files[0] }
+    }
+    case sandboxActions.SET_LOGS: {
+      return { ...state, logs: [...state.logs, action.payload] }
     }
     default: {
       throw new Error(
